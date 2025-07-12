@@ -149,9 +149,10 @@ export default function VehiclesProfile() {
                   <span className="text-gray-500">{data?.palletNumber}</span>
                 </div>
                
-                <div className="item flex flex-col gap-2 mb-3">
-                  <span className=" font-bold">Joined Date</span>
-                  <span className="text-gray-500">{data?.joinedYear}</span>
+                     <div className="item flex flex-col gap-2 mb-3">
+                  <span className=" font-bold">Joined Year</span>
+                  <span className="text-gray-500">{new Date(data?.joinedYear,).toLocaleDateString("en-GB", {
+        year: "numeric",})}</span>
                 </div>
                 <div className="item flex flex-col gap-2 mb-3">
                   <span className=" font-bold">last Service</span>
