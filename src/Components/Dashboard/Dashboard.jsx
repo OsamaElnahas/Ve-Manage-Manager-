@@ -4,7 +4,6 @@ import SalesBarChart from "./SalesBarChart";
 import SalesLineChart from "./SalesLineChart";
 import { useQuery } from "@tanstack/react-query";
 import Loader from "../Loader/Loader";
-import { set } from "lodash";
 import { useState } from "react";
 
 export default function Dashboard() {
