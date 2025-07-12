@@ -2,7 +2,7 @@ import React from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Layout from "../Layout/Layout";
 import Drivers from "../Drivers/Drivers";
-import Dashboard from "../dashboard/Dashboard";
+import Dashboard from "../Dashboard/Dashboard";
 import Login from "../Login/Login";
 import ResetPassword from "../Forget-reset-password/ResetPassword";
 import ForgetPassword from "../Forget-reset-password/ForgetPassword";

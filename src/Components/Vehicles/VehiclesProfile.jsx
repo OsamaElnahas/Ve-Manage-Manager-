@@ -100,7 +100,7 @@ export default function VehiclesProfile() {
   <div className='carInfo bg-white p-4 rounded-lg shadow-md col-span-12 lg:col-span-8 mb-4 '>
     
     <div className="title flex justify-between p-2 border-b-2 border-gray-200">
-      <div className="modelName text-blue-500 font-bold text-xl flex items-center gap-3 "><FaCar size={26}/> { data?.vehicleModel?.brand?.name } { data?.vehicleModel?.name} </div>
+      <div className="modelName text-blue-500 font-bold text-xl flex items-center gap-3 "><FaCar size={26}/> { data?.vehicleModel?.brand} { data?.vehicleModel?.name} {data?.modelYear}</div>
       <div className={`status ${data?.status === "Available" ? "bg-green-500" : "bg-red-500"}  text-white p-2 rounded-2xl  font-bold`}>{data?.status=="Available"?"Available":"Under Repair"}</div>
     </div>
     <div className="details grid md:grid-cols-2 p-2">

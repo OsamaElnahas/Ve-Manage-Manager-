@@ -70,7 +70,7 @@ const Trips = () => {
             values: [
               index + 1,
               item.driver.displayName,
-              item.vehicle.vehicleModelDto.brand?.name,
+              item.vehicle?.vehicleModelDto?.category.name,
               item.vehicle.palletNumber,
               item.status,
               item.destination,
@@ -80,10 +80,10 @@ const Trips = () => {
           columnSizes={[
             "5%", // #
             "15%", // Driver Name
-            "15%", // Vehicle Type
+            "12%", // Vehicle Type
             "15%", // Plate Number
             "15%", // Trip Status
-            "14%", // Destination
+            "17%", // Destination
             "17%", // Date & Time
             "5%", // Action
           ]}
