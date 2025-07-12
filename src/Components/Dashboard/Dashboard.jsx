@@ -60,6 +60,56 @@ export default function Dashboard() {
       ),
   });
 
+  async function fetchAiChart1() {
+    try {
+      const response = await axios.get(
+        "https://veemanage.runasp.net/api/Dashboard/priority-chart",
+        {
+          headers: {
+            Authorization: "Bearer " + localStorage.getItem("token"),
+          },
+          responseType: "blob",
+        }
+      );
+      console.log(response);
+      const imageBlob = response.data;
+      const imageUrl = URL.createObjectURL(imageBlob);
+      return imageUrl;
+    } catch (error) {
+      console.error("Error fetching AI charts:", error);
+    }
+  }
+
+  const { data: ChartData1 } = useQuery({
+    queryKey: ["fetchAiChart1"],
+    queryFn: fetchAiChart1,
+  });
+
+  async function fetchAiChart2() {
+    try {
+      const response = await axios.get(
+        "https://veemanage.runasp.net/api/Dashboard/time-series-costs-chart",
+        {
+          headers: {
+            Authorization: "Bearer " + localStorage.getItem("token"),
+          },
+          responseType: "blob",
+        }
+      );
+      console.log(response);
+      const imageBlob = response.data;
+      const imageUrl = URL.createObjectURL(imageBlob);
+      return imageUrl;
+    } catch (error) {
+      console.error("Error fetching AI charts:", error);
+    }
+  }
+
+  const { data: ChartData2 } = useQuery({
+    queryKey: ["fetchAiChart2"],
+    queryFn: fetchAiChart2,
+  });
+
   return fuelCostIsloading ||
     maintenanceCostIsloading ||
     IsVehicelsLoading ||
@@ -130,17 +180,38 @@ export default function Dashboard() {
         </div>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
-        <div className="bg-white text-black border  border-stone-300 shadow-md  rounded-xl w-[100%]">
-          <div className="flex flex-col gap-4 p-4">
-            <FleetPieChart />
-          </div>
+        <div className="bg-white text-black border border-stone-300 shadow-md rounded-xl w-full min-h-[300px] flex items-center justify-center p-4">
+          {ChartData1 ? (
+            <img
+              src={ChartData1}
+              alt="AI Chart 1"
+              className="max-h-[370px]  object-contain"
+            />
+          ) : (
+            <p>Loading...</p>
+          )}
         </div>
         <div className="bg-white text-black border  border-stone-300 shadow-md  rounded-xl w-[100%]">
           <div className="flex flex-col gap-4 p-4">
             <SalesLineChart />
           </div>
         </div>
-        
+        <div className="bg-white text-black border  border-stone-300 shadow-md  rounded-xl w-[100%]">
+          <div className="flex flex-col gap-4 p-4">
+            <FleetPieChart />
+          </div>
+        </div>
+        <div className="bg-white text-black border border-stone-300 shadow-md rounded-xl w-full min-h-[300px] flex items-center justify-center p-4">
+          {ChartData2 ? (
+            <img
+              src={ChartData2}
+              alt="AI Chart 2"
+              className=" max-h-[370px] object-contain"
+            />
+          ) : (
+            <p>Loading...</p>
+          )}
+        </div>
       </div>
     </div>
   );
