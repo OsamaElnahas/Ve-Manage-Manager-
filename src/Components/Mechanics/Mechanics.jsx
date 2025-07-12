@@ -14,7 +14,7 @@ export default function Mechans() {
   });
   async function getDataOfUsers() {
     try {
-      const res = await axios.get(" ", {
+      const res = await axios.get("https://veemanage.runasp.net/api/User/all/mechanic", {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },

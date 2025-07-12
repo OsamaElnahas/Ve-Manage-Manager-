@@ -33,12 +33,7 @@ const Model = () => {
 
   return (
     <div className="font-Nunito">
-      <Link
-        to={"/model/add"}
-        className="block mb-12 border border-primaryColor w-[180px] p-2 text-center rounded-lg text-primaryColor font-bold"
-      >
-        + New Model
-      </Link>
+  
 
       <div className="mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {ModelsData.map((item, index) => {
