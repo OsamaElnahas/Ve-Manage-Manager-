@@ -61,7 +61,7 @@ const ReportCard = ({
             { title: "Issue Type", value: item?.faultType || "N/A" },
             { title: "Problem", value: item?.faultDetails || "N/A" },
             { title: "Status", value: item?.status || "N/A" },
-            { title: "Fuel Cost", value: `${item?.fuelCost || 0} EGP` },
+            { title: "Fuel Cost", value: `${item?.fuelCost || item.cost || 0} EGP` },
             { title: "Location", value: item?.faultAddress || "N/A" },
           ];
 
