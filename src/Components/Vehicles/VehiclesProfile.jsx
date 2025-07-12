@@ -117,12 +117,20 @@ export default function VehiclesProfile() {
       </div>
       <div className='item flex flex-col gap-2 mb-3'>
         <span className=' font-bold'>Current Km</span>
-        <span className='text-gray-500'>{data?.kmDriven}</span>
+        <span className='text-gray-500'>{data?.currentOdometerKM}</span>
       </div>
-      <div className='item flex flex-col gap-2 mb-3'>
+      {/* <div className='item flex flex-col gap-2 mb-3'>
         <span className=' font-bold'>Fuel Efficiency</span>
         <span className='text-gray-500'>{data?.vehicleModel?.fuelEfficiency}</span>
-      </div>
+      </div> */}
+       <div className="item flex flex-col gap-2 mb-3">
+                  <span className=" font-bold">Toatal Fulel Cost</span>
+                  <span className="text-gray-500">{data?.toatalFuleCost}</span>
+                </div>
+                <div className="item flex flex-col gap-2 mb-3">
+                  <span className=" font-bold">total Maintenance Cost</span>
+                  <span className="text-gray-500">{data?.totalMaintenanceCost}</span>
+                </div>
       </div>
       <div className="parentItems">
 
@@ -134,10 +142,29 @@ export default function VehiclesProfile() {
         <span className=' font-bold'>Plate Number</span>
         <span className='text-gray-500'>{data?.palletNumber}</span>
       </div>
-      <div className='item flex flex-col gap-2 mb-3'>
-        <span className=' font-bold'>Joined Date</span>
-        <span className='text-gray-500'>{data?.joinedYear}</span>
-      </div>
+      
+
+       <div className="item flex flex-col gap-2 mb-3">
+                  <span className=" font-bold">Plate Number</span>
+                  <span className="text-gray-500">{data?.palletNumber}</span>
+                </div>
+               
+                <div className="item flex flex-col gap-2 mb-3">
+                  <span className=" font-bold">Joined Date</span>
+                  <span className="text-gray-500">{data?.joinedYear}</span>
+                </div>
+                <div className="item flex flex-col gap-2 mb-3">
+                  <span className=" font-bold">last Service</span>
+                  <span className="text-gray-500">
+                  {data?.lastMaintenanceDate
+                                  ? new Date(data.lastMaintenanceDate).toLocaleDateString("en-GB", {
+                          day: "2-digit",
+                          month: "2-digit",
+                          year: "numeric",
+                        })
+                      : "N/A"}
+                  </span>
+                </div>
     </div>
       </div>
          </div>

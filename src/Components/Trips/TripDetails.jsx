@@ -46,6 +46,8 @@ export default function TripDetails() {
     queryFn: tripLocation,
     queryKey: ["triplocation"],
     enabled: !!id,
+    refetchInterval:1000
+
   });
   const formatDateTime = (dateStr) => {
     const date = new Date(dateStr);
@@ -68,7 +70,7 @@ export default function TripDetails() {
   const tripDetails = [
     {
       title: "Vehicle Name",
-      value: data?.tripRequest?.vehicle?.vehicleModelDto?.name || "N/A",
+      value:`${data?.tripRequest?.vehicle?.vehicleModelDto?.brand}    ${data?.tripRequest?.vehicle?.vehicleModelDto?.name} `,
     },
     {
       title: "Driver Name",
