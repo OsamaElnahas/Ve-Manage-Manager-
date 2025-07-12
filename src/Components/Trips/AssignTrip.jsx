@@ -2,7 +2,7 @@ import { ChevronDown } from "lucide-react";
 import React, { useState } from "react";
 import * as Yup from "yup";
 import axios from "axios";
-import Popup from "../Popup/Popup";
+import Popup from "../PopUp/PopUp";
 import { useQuery } from "@tanstack/react-query";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";

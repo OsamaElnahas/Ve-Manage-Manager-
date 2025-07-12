@@ -10,7 +10,7 @@ import {
 } from "react-icons/fa";
 import { IoEllipsisVertical } from "react-icons/io5";
 import { Link, NavLink } from "react-router";
-import Popup from "../Popup/Popup";
+import Popup from "../PopUp/PopUp";
 import { QueryClient, useMutation } from "@tanstack/react-query";
 import axios from "axios";
 import { toast } from "react-toastify";

@@ -6,7 +6,7 @@ import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
 import Loader from "../Loader/Loader";
 import { toast } from "react-toastify";
-import Popup from "../Popup/Popup";
+import Popup from "../PopUp/PopUp";
 
 export default function Category() {
   const [openIndex, setOpenIndex] = useState(null);
