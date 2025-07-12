@@ -148,9 +148,12 @@ const ReportCard = ({
                   {item.seen === false && (
                     <button
                       onClick={() => {
-                        const url = `https://veemanage.runasp.net/api/Trip/Report/Fault/Report/Fault/${item.id}/mark-as-seen`;
+                        const url = item.reportType=="Fault"? `https://veemanage.runasp.net/api/Trip/Report/Fault/Report/Fault/${item.id}/mark-as-seen`:
+                        `https://veemanage.runasp.net/api/TripReport/Report/Regular/${item.id}/mark-as-seen`
+                        ;
                         markAsSeenMutation(url);
                       }}
+                      
                       className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md text-sm"
                     >
                       Mark as Seen
