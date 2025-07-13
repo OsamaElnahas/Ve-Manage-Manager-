@@ -5,6 +5,7 @@ import SalesLineChart from "./SalesLineChart";
 import { useQuery } from "@tanstack/react-query";
 import Loader from "../Loader/Loader";
 import { useState } from "react";
+import { useEffect, useRef } from "react";
 
 export default function Dashboard() {
   const currentMonth = new Date().getMonth() + 1;
@@ -71,8 +72,8 @@ export default function Dashboard() {
         }
       );
       console.log(response);
-      const imageBlob = response.data;
-      const imageUrl = URL.createObjectURL(imageBlob);
+      const imageBlob = response?.data;
+      const imageUrl = URL?.createObjectURL(imageBlob);
       return imageUrl;
     } catch (error) {
       console.error("Error fetching AI charts:", error);
@@ -80,7 +81,7 @@ export default function Dashboard() {
   }
 
   const { data: ChartData1 } = useQuery({
-    queryKey: ["fetchAiChart1"],
+    queryKey: ["fetchAiChart1",Month],
     queryFn: fetchAiChart1,
   });
 
@@ -96,8 +97,8 @@ export default function Dashboard() {
         }
       );
       console.log(response);
-      const imageBlob = response.data;
-      const imageUrl = URL.createObjectURL(imageBlob);
+      const imageBlob = response?.data;
+      const imageUrl = URL?.createObjectURL(imageBlob);
       return imageUrl;
     } catch (error) {
       console.error("Error fetching AI charts:", error);
@@ -105,9 +106,21 @@ export default function Dashboard() {
   }
 
   const { data: ChartData2 } = useQuery({
-    queryKey: ["fetchAiChart2"],
+    queryKey: ["fetchAiChart2",Month],
     queryFn: fetchAiChart2,
   });
+  const urlImage=ChartData1 !==undefined && ChartData1
+
+  console.log(urlImage);
+  
+  const prevUrl = useRef();
+
+  useEffect(() => {
+    if (ChartData1 && prevUrl.current) {
+      URL.revokeObjectURL(prevUrl.current);
+    }
+    prevUrl.current = ChartData1;
+  }, [ChartData1]);
 
   return fuelCostIsloading ||
     maintenanceCostIsloading ||
@@ -179,17 +192,7 @@ export default function Dashboard() {
         </div>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
-        <div className="bg-white text-black border border-stone-300 shadow-md rounded-xl w-full min-h-[300px] flex items-center justify-center p-4">
-          {ChartData1 ? (
-            <img
-              src={ChartData1}
-              alt="AI Chart 1"
-              className="max-h-[370px]  object-contain"
-            />
-          ) : (
-            <p>Loading...</p>
-          )}
-        </div>
+        
         <div className="bg-white text-black border  border-stone-300 shadow-md  rounded-xl w-[100%]">
           <div className="flex flex-col gap-4 p-4">
             <SalesLineChart />
@@ -199,6 +202,22 @@ export default function Dashboard() {
           <div className="flex flex-col gap-4 p-4">
             <FleetPieChart />
           </div>
+        </div>
+        <div className="bg-white text-black border border-stone-300 shadow-md rounded-xl w-full min-h-[300px] flex items-center justify-center p-4">
+          {!urlImage ? (
+        
+            <p>Loading...</p>
+          ) : (
+                <img
+              src={urlImage}
+              alt="AI Chart 1"
+              className="max-h-[370px] object-contain"
+              onError={() => {
+                console.log("Image failed to load", urlImage);
+                // Optionally, set a fallback image or message here
+              }}
+            />
+          )}
         </div>
         <div className="bg-white text-black border border-stone-300 shadow-md rounded-xl w-full min-h-[300px] flex items-center justify-center p-4">
           {ChartData2 ? (
